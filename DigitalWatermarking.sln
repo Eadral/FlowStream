@@ -4,12 +4,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DWCLI", "DWCLI\DWCLI.vcxproj", "{AFD88EAC-E919-4968-B439-A01D71C05293}"
+	ProjectSection(ProjectDependencies) = postProject
+		{262CB8A7-3E24-45F9-9B8C-759ED81368A9} = {262CB8A7-3E24-45F9-9B8C-759ED81368A9}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DWCore", "DWCore\DWCore.vcxproj", "{262CB8A7-3E24-45F9-9B8C-759ED81368A9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DWCLR", "DWCLR\DWCLR.vcxproj", "{19ACA9EF-1E77-463E-8C26-5606CF2B4564}"
+	ProjectSection(ProjectDependencies) = postProject
+		{262CB8A7-3E24-45F9-9B8C-759ED81368A9} = {262CB8A7-3E24-45F9-9B8C-759ED81368A9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWGUI", "DWGUI\DWGUI.csproj", "{4CE1F7E4-64B0-4C15-843A-8BA4BFF7CC54}"
+	ProjectSection(ProjectDependencies) = postProject
+		{262CB8A7-3E24-45F9-9B8C-759ED81368A9} = {262CB8A7-3E24-45F9-9B8C-759ED81368A9}
+		{AFD88EAC-E919-4968-B439-A01D71C05293} = {AFD88EAC-E919-4968-B439-A01D71C05293}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,7 +32,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AFD88EAC-E919-4968-B439-A01D71C05293}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{AFD88EAC-E919-4968-B439-A01D71C05293}.Debug|Any CPU.Build.0 = Debug|Win32
 		{AFD88EAC-E919-4968-B439-A01D71C05293}.Debug|x64.ActiveCfg = Debug|x64
 		{AFD88EAC-E919-4968-B439-A01D71C05293}.Debug|x64.Build.0 = Debug|x64
 		{AFD88EAC-E919-4968-B439-A01D71C05293}.Debug|x86.ActiveCfg = Debug|Win32
@@ -32,7 +41,6 @@ Global
 		{AFD88EAC-E919-4968-B439-A01D71C05293}.Release|x86.ActiveCfg = Release|Win32
 		{AFD88EAC-E919-4968-B439-A01D71C05293}.Release|x86.Build.0 = Release|Win32
 		{262CB8A7-3E24-45F9-9B8C-759ED81368A9}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{262CB8A7-3E24-45F9-9B8C-759ED81368A9}.Debug|Any CPU.Build.0 = Debug|Win32
 		{262CB8A7-3E24-45F9-9B8C-759ED81368A9}.Debug|x64.ActiveCfg = Debug|x64
 		{262CB8A7-3E24-45F9-9B8C-759ED81368A9}.Debug|x64.Build.0 = Debug|x64
 		{262CB8A7-3E24-45F9-9B8C-759ED81368A9}.Debug|x86.ActiveCfg = Debug|Win32
@@ -43,7 +51,6 @@ Global
 		{262CB8A7-3E24-45F9-9B8C-759ED81368A9}.Release|x86.ActiveCfg = Release|Win32
 		{262CB8A7-3E24-45F9-9B8C-759ED81368A9}.Release|x86.Build.0 = Release|Win32
 		{19ACA9EF-1E77-463E-8C26-5606CF2B4564}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{19ACA9EF-1E77-463E-8C26-5606CF2B4564}.Debug|Any CPU.Build.0 = Debug|Win32
 		{19ACA9EF-1E77-463E-8C26-5606CF2B4564}.Debug|x64.ActiveCfg = Debug|x64
 		{19ACA9EF-1E77-463E-8C26-5606CF2B4564}.Debug|x64.Build.0 = Debug|x64
 		{19ACA9EF-1E77-463E-8C26-5606CF2B4564}.Debug|x86.ActiveCfg = Debug|Win32
