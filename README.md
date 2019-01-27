@@ -6,7 +6,8 @@ A software that can easily create digital watermarking.
 ## Development
 
 1. Install the dependencies first.
-2. Build.
+2. Solution Platform - x86.
+3. Build.
 
 ### Dependencies
 
