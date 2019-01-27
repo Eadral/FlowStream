@@ -70,12 +70,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Eadral\Desktop\Develop\Fengru\DigitalWatermarking\DWCore;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Eadral\Desktop\Develop\Fengru\DigitalWatermarking\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\DWCore;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\Eadral\Desktop\Develop\Fengru\DigitalWatermarking\DWCore;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Eadral\Desktop\Develop\Fengru\DigitalWatermarking\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\DWCore;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(ProjectDir)..\DWCore;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(ProjectDir)..\DWCore;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

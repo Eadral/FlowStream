@@ -6,7 +6,7 @@ A software that can easily create digital watermarking.
 ## Development
 
 1. Install the dependencies first.
-2. Build solution.
+2. Build.
 
 ### Dependencies
 
