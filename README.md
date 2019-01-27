@@ -5,20 +5,34 @@ A software that can easily create digital watermarking.
 
 ## Development
 
+1. Install the dependencies first.
+2. Build solution.
 
+### Dependencies
 
-### DWCore
+Windows 10
+
+Visual Studio 2017
+
+- .Net
+- C++
+  - Desktop C++ Windows 10 SDK
+  - C++/CLI
+
+### Projects
+
+#### DWCore
 
 Core cpp files
 
-### DWCLI
+#### DWCLI
 
 Command Line Interface
 
-### DWCLR
+#### DWCLR
 
 C++/CLI for C#
 
-### DWGUI
+#### DWGUI
 
 WPF GUI.
