@@ -12,8 +12,13 @@ namespace DWCore {
 	class DW {
 	public:
 		static CPP_EXPORTS std::string Version();
+		Image OpenImage(std::string imagePath);
 	};
 	
+	class Image {
+
+	};
+
 }
 
 
