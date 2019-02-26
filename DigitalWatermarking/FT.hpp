@@ -4,8 +4,11 @@
 #include <iostream>
 #include <vector>
 
+#include "parameter.hpp"
+
 using namespace std;
 using namespace cv;
+
 
 void shift_single(Mat ori) {
 	int cx = ori.cols / 2;
@@ -26,6 +29,8 @@ void shift_single(Mat ori) {
 	tmp.copyTo(q2);
 }
 
+/// <summary> Spin the complex image. </summary>
+/// <param name="complex"> Complex image. </param>
 void shift(Mat &complex) {
 	Mat planes[] = { Mat::zeros(complex.size(),CV_32F), Mat::zeros(complex.size(),CV_32F) };
 	split(complex, planes);
@@ -83,19 +88,19 @@ void sign(Mat &complex, Mat signIm, Mat &out) {
 	Mat planes[] = { Mat::zeros(complex.size(),CV_32F), Mat::zeros(complex.size(),CV_32F) };
 	split(complex, planes);
 
-	Mat signI = Mat::zeros(planes[0].rows*0.25, planes[0].cols*0.25, signI.type());
+	Mat signI = Mat::zeros(planes[0].rows*insert_scale, planes[0].cols*insert_scale, signI.type());
 	resize(signIm, signI, signI.size());
 
 	Mat signF = Mat::zeros(signI.size(), CV_32F);
 	signI.convertTo(signF, CV_32F);
 
-	cv::pow(signF, 1.5, signF);
+	cv::pow(signF, power, signF);
 
 	Mat plane0Roi = planes[0](Rect(0, 0, signF.cols, signF.rows));
-	addWeighted(plane0Roi, 0., signF, 1., 0., plane0Roi);
+	addWeighted(plane0Roi, 1- mixed_factor, signF, mixed_factor, 0., plane0Roi);
 	
 	Mat plane1Roi = planes[1](Rect(0, 0, signF.cols, signF.rows));
-	addWeighted(plane1Roi, 0., signF, 1., 0., plane1Roi);
+	addWeighted(plane1Roi, 1- mixed_factor, signF, mixed_factor, 0., plane1Roi);
 
 	flip(signF, signF, 0);
 	flip(signF, signF, 1);
@@ -108,3 +113,4 @@ void sign(Mat &complex, Mat signIm, Mat &out) {
 
 	merge(planes, 2, out);
 }
+
