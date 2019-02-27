@@ -14,8 +14,7 @@ Support Windows 10 64bits only now.
 ## Development ##
 
 1. Install the dependencies first.
-2. Build Configuration - select all builds.
-3. Build.
+2. Use VS 2017 to Build.
 
 ### Dependencies
 
