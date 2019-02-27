@@ -13,10 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\3rd">
+      <UniqueIdentifier>{f137461b-9f4e-4617-b635-cb60be4e367a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QrCode.cpp">
+      <Filter>Header Files\3rd</Filter>
+    </ClCompile>
+    <ClCompile Include="QrSegment.cpp">
+      <Filter>Header Files\3rd</Filter>
+    </ClCompile>
+    <ClCompile Include="BitBuffer.cpp">
+      <Filter>Header Files\3rd</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CLI11.hpp">
+      <Filter>Header Files\3rd</Filter>
+    </ClInclude>
+    <ClInclude Include="QrCode.hpp">
+      <Filter>Header Files\3rd</Filter>
+    </ClInclude>
+    <ClInclude Include="QrSegment.hpp">
+      <Filter>Header Files\3rd</Filter>
+    </ClInclude>
+    <ClInclude Include="BitBuffer.hpp">
+      <Filter>Header Files\3rd</Filter>
+    </ClInclude>
+    <ClInclude Include="qr.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sign.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parameters.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="extract.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utility.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

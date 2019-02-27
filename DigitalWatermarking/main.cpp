@@ -77,11 +77,11 @@ int main() {
 	Mat finaled = show_mag(next);
 	imshow("final", finaled);
 
-	Mat qrRoi = finaled(Rect(0, 0, finaled.cols*insert_scale, finaled.rows*insert_scale));
+	Mat qrRoi = finaled(Rect(0, 0, finaled.cols*INSERT_SCALE, finaled.rows*INSERT_SCALE));
 	Mat qr;
 	qrRoi.copyTo(qr);
 	imshow("QR", qr);
-	qr.convertTo(qr, -1, 10, 0);
+	qr.convertTo(qr, -1, 8, 0);
 	//equalizeHist(qr, qr);
 	imshow("EnhancedQR", qr);
 
