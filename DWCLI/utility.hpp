@@ -69,6 +69,13 @@ namespace Meow {
 		return iDft[0];
 	}
 
+	Mat img_idct(Mat img) {
+		Mat idct_img;
+		idct(img, idct_img);
+
+		return idct_img;
+	}
+
 
 	void img_dft(cv::Mat &img, cv::Mat &complexI) {
 		Mat padded;
@@ -81,6 +88,19 @@ namespace Meow {
 		merge(planes, 2, complexI);
 
 		dft(complexI, complexI);
+		// dct(complexI, complexI);
 	}
+
+	void img_dct(cv::Mat &img, cv::Mat &img_out) {
+		// Mat padded;
+		// int m = getOptimalDFTSize(img.rows);
+		// int n = getOptimalDFTSize(img.cols);
+		//
+		// copyMakeBorder(img, padded, 0, m - img.rows, 0, n - img.cols, BORDER_CONSTANT, Scalar::all(0));
+
+		dct(img, img_out);
+
+	}
+
 
 }

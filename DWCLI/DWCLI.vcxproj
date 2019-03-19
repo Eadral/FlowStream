@@ -84,7 +84,7 @@ copy $(OPENCV_DIR)\bin\opencv_world401.dll $(TargetDir)</Command>
     </PreBuildEvent>
     <Link>
       <AdditionalLibraryDirectories>$(OPENCV_DIR)\lib\;C:\Program Files\ImageMagick-7.0.8-Q16\lib;C:\Develop\Library\zxing-cpp-master\build\Debug;C:\Develop\Library\ZXingGdiPlus\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_world401d.lib;opencv_world401.lib;CORE_RL_Magick++_.lib;CORE_RL_MagickCore_.lib;CORE_RL_MagickWand_.lib;ZXingGdiPlus.lib;ZXingCore_d.lib;Gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world401d.lib;opencv_world401.lib;ZXingGdiPlus.lib;ZXingCore_d.lib;Gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

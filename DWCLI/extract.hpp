@@ -15,7 +15,7 @@ class Extract {
 public:
 
 	Extract(string extract_colorSpace, string extract_channel, 
-		float contrast = 8.f) : contrast(contrast) {
+		float contrast = 1.f) : contrast(contrast) {
 		if (extract_colorSpace == "RGB") {
 			if (extract_channel == "b") channel = 0;
 			if (extract_channel == "g") channel = 1;
@@ -39,7 +39,9 @@ public:
 		Mat extracted = show_mag(complex);
 		//imshow("QrRoi", extracted);
 
-		Mat QrRoi = extracted(cv::Rect(0, 0, extracted.cols*INSERT_SCALE, extracted.rows*INSERT_SCALE));
+		auto size = min(extracted.cols*INSERT_SCALE, extracted.rows*INSERT_SCALE);
+
+		Mat QrRoi = extracted(cv::Rect(0, 0, size, size));
 		Mat extractedQR;
 		QrRoi.copyTo(extractedQR);
 		
@@ -54,13 +56,63 @@ public:
 
 		QREnhance(Qrout);
 
-		imwrite(savename, Qrout);
+		Mat binary;
+		binary = threshold(Qrout, binary, 128, 255, THRESH_BINARY);
+
+		imwrite(savename, binary);
 
 		//waitKey(0);
 	}
 
+	void extractToQRDCT(string filename, string savename) {
+
+		Mat img = imread(filename);
+		// cv::cvtColor(img, img, COLOR_RGB2YUV);
+		//imshow("img", img);
+		vector<Mat> channels;
+		split(img, channels);
+		Mat selected = channels[channel];
+		imshow("output", selected);
+		selected.convertTo(selected, CV_32F, 1.0/255, 0);
+
+		Mat complex;
+		dct(selected, complex);
+		// shift(complex);
+		imshow("dct", complex);
+		waitKey(0);
+		Mat extracted = complex;
+		imshow("QrRoi", extracted);
+
+		auto size = min(extracted.cols*INSERT_SCALE, extracted.rows*INSERT_SCALE);
+
+		Mat QrRoi = extracted(cv::Rect(extracted.cols / 2 - size / 2, extracted.rows / 2 - size / 2, size, size));
+		Mat extractedQR;
+		QrRoi.copyTo(extractedQR);
+
+		
+		// imshow("Qr", extractedQR);
+
+		Mat Qrout;
+		extractedQR.copyTo(Qrout);
+		Qrout.convertTo(Qrout, CV_8U, 255 * contrast, 0);
+		imshow("Qr", Qrout);
+
+		// QREnhance(Qrout);
+		Mat binary;
+		threshold(Qrout, binary, 200, 255, THRESH_BINARY | THRESH_TRIANGLE);
+
+		medianBlur(binary, binary, 3);
+		threshold(binary, binary, 200, 255, THRESH_BINARY | THRESH_TRIANGLE);
+		Mat output;
+		resize(binary, output, cv::Size(128, 128));
+		imshow("output", output);
+		imwrite(savename, output);
+
+		waitKey(0);
+	}
+
 	void QREnhance(Mat &img) {
-		equalizeHist(img, img);
+		//equalizeHist(img, img);
 		img.convertTo(img, -1, contrast, 0);
 
 		//Mat kernel = (Mat_<float>(3, 3) << 0, -1, 0, 0, 5, 0, 0, -1, 0);

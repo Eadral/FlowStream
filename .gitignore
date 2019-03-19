@@ -2,3 +2,6 @@
 Debug/
 x64/
 Publish/
+*.png
+*.mp4
+*.avi
