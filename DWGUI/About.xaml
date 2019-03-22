@@ -1,0 +1,23 @@
+﻿<Window x:Class="DWGUI.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DWGUI"
+        mc:Ignorable="d"
+        Title="About" Height="195.5" Width="400.5" Icon="Icon/logo.png" ResizeMode="NoResize" ShowInTaskbar="False">
+    <Grid Margin="0,0,-0.5,2">
+     
+
+        <Image  Source="Icon/logo.png" Margin="10,10,0,0" Height="144" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
+        <Label Content="FlowStream Project@Beihang" HorizontalAlignment="Left" Margin="179,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="FlowStream" HorizontalAlignment="Left" Margin="179,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Licensed under MIT" HorizontalAlignment="Left" Margin="179,108,0,0" VerticalAlignment="Top"/>
+        <Label HorizontalAlignment="Left" Margin="179,126,0,0" VerticalAlignment="Top" >
+            <Hyperlink NavigateUri="https://github.com/Eadral/FlowStream">
+                Github
+            </Hyperlink>
+
+        </Label>
+    </Grid>
+</Window>

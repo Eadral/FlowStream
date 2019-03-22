@@ -15,6 +15,7 @@
 #include <windows.h>
 #include <objidl.h>
 #include <gdiplus.h>
+#include "test.hpp"
 using namespace Gdiplus;
 
 using namespace std;
@@ -122,6 +123,9 @@ int main(int argc, char **argv) {
 	float extract_contrast = 1.f;
 	extract->add_option("--contrast, -c", extract_contrast, "Set the extract constrast", true);
 
+	bool extract_debug;
+	extract->add_flag("--debug, -d", extract_debug, "Debug option");
+
 #pragma endregion
 
 
@@ -144,6 +148,25 @@ int main(int argc, char **argv) {
 #pragma endregion
 
 
+	auto test = app.add_subcommand("test", "Utility for testing");
+
+	string test_filenameA;
+	test->add_option("--filenameA, -a", test_filenameA, "Filename A");
+
+	string test_filenameB;
+	test->add_option("--filenameB, -b", test_filenameB, "Filename B");
+
+	bool test_compute;
+	test->add_flag("--compute, -c", test_compute, "Compute some values");
+
+	bool test_highPassFilter;
+	test->add_flag("--highPassFilter", test_highPassFilter);
+
+	bool test_noise;
+	test->add_flag("--noise", test_noise);
+
+	bool test_cutting;
+	test->add_flag("--cutting", test_cutting);
 
 	CLI11_PARSE(app, argc, argv);
 
@@ -173,7 +196,7 @@ int main(int argc, char **argv) {
 
 	if (extract->parsed()) {
 		try {
-			Extract extract_tool(extract_colorSpace, extract_channel, extract_contrast);
+			Extract extract_tool(extract_colorSpace, extract_channel, extract_contrast, extract_debug);
 			extract_tool.extractToQRDCT(filename, savename);
 		} catch (string error) {
 			cout << error << endl;
@@ -212,6 +235,22 @@ int main(int argc, char **argv) {
 			cap.read(frame);
 
 			imwrite(video_output_filename, frame);
+		}
+	}
+
+	if (test->parsed()) {
+		Test test(test_filenameA, test_filenameB);
+		if (test_compute) {
+			test.computeValue();
+		}
+		if (test_highPassFilter) {
+			test.high_pass_fillter();
+		}
+		if (test_noise) {
+			test.noise();
+		}
+		if (test_cutting) {
+			test.cutting();
 		}
 	}
 

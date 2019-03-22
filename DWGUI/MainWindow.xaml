@@ -5,8 +5,132 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DWGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="FlowStream" Height="480" Width="686" Icon="Icon/logo.png">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open" Click="Button_Click_Open"/>
+                <MenuItem Header="_Save" Click="Button_Click_Save"/>
+
+            </MenuItem>
+
+            <MenuItem Header="_Attack">
+                <MenuItem Header="_Noise" Click="Click_Attack_Noise"/>
+                <MenuItem Header="_Cut" Click="Click_Attack_Cut"/>
+                <MenuItem Header="_High Pass Filter" Click="Click_Attack_HighPassFilter"/>
+
+            </MenuItem>
+
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" Click="Click_About"/>
+
+            </MenuItem>
+
+            
+
+        </Menu>
+        <Grid>
+            <DockPanel>
+                <ToolBar DockPanel.Dock="Top" Height="30">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                    <Button Height="20" Margin="0,2.437,0,1.239" Width="20" Click="Button_Click_Open">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icon/open.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="20" Margin="0,2.437,0,1.239" Width="20" Click="Button_Click_Save">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icon/save.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="20" Margin="0,2.437,0,1.239" Width="20" Click="Button_Click_Start">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icon/play.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="18" Margin="2,2.437,0,1.239" Width="18" Click="Button_Click_Reset">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icon/restart_red.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="20" Margin="3,2.437,0,1.239" Width="20" Click="Button_Click_Pause">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icon/pause.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="20" Margin="3,2.437,0,1.239" Width="20" Click="Button_Click_Add">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icon/add.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Height="20" Margin="3,2.437,0,1.239" Width="20" Click="Button_Click_Extract">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icon/extract.png"/>
+                        </Button.Background>
+                    </Button>
+                </ToolBar>
+                <TabControl>
+                    <TabItem Header="Image">
+                        <Grid Background="#FFE5E5E5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="36*"/>
+                                <ColumnDefinition Width="11*"/>
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Header="Source" HorizontalAlignment="Left" Height="356.58" Margin="10,10,0,0" VerticalAlignment="Top" Width="356.56">
+                                <Image x:Name="SourceImage" Margin="0,0,0.5,-0.5"/>
+                            </GroupBox>
+                            <GroupBox Header="Message" Height="100" Margin="371.56,10,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                                <TextBox x:Name="TextBox" TextWrapping="Wrap" Text=""/>
+                            </GroupBox>
+                            <GroupBox Header="Parameter" Height="111" Margin="372,115,10,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition  />
+                                        <ColumnDefinition  />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="Power" VerticalAlignment="Center"/>
+                                    <Slider x:Name="PowerSlider" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" TickPlacement="BottomRight" Value="1" TickFrequency="0.1" Minimum="0" Maximum="2" IsSnapToTickEnabled="True"/>
+                                    <TextBox x:Name="PowerText" Grid.Row="0" Grid.Column="2" Margin="0.5,6,50,6" Text="{Binding Value, ElementName=PowerSlider}"/>
+
+                                    <Label Grid.Row="1" Grid.Column="0" Content="Factor" VerticalAlignment="Center" />
+                                    <Slider x:Name="MatchingSlider"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" TickPlacement="BottomRight" Value="0.001" TickFrequency="0.0001" Minimum="0" Maximum="0.01" IsSnapToTickEnabled="True"/>
+                                    <TextBox x:Name="MatchingText" Grid.Row="1" Grid.Column="2" Margin="0.5,6,50,6" Text="{Binding Value, ElementName=MatchingSlider}"/>
+
+                                    <Label Grid.Row="2" Grid.Column="0" Content="Debug" VerticalAlignment="Center" Margin="0,2"/>
+                                    <CheckBox x:Name="DebugCheckBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Log" Margin="372,0,10,9.5" Grid.ColumnSpan="2" Height="123" VerticalAlignment="Bottom">
+                                <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
+                                    <TextBox x:Name="LogBox" TextWrapping="Wrap" Text=""/>
+                                </ScrollViewer>
+                            </GroupBox>
+
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Video">
+                        <Grid Background="#FFE5E5E5">
+                            <Label Content="Unavailable Now." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </DockPanel>
+
+
+
+        </Grid>
+    </DockPanel>
+
 </Window>

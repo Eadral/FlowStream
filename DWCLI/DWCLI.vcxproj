@@ -142,6 +142,7 @@ copy $(OPENCV_DIR)\bin\opencv_world401.dll $(TargetDir)</Command>
     <ClInclude Include="QrCode.hpp" />
     <ClInclude Include="QrSegment.hpp" />
     <ClInclude Include="sign.hpp" />
+    <ClInclude Include="test.hpp" />
     <ClInclude Include="utility.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

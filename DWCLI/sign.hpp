@@ -86,14 +86,14 @@ public:
 		}
 
 		Mat signedImage;
-		imshow("before", channels[channel]);
+		// imshow("before", channels[channel]);
 		merge(channels, signedImage);
 
 		Mat signedImageRecover = signedImage;
 		// cv::cvtColor(signedImageRecover, signedImageRecover, COLOR_YUV2RGB);
 		imwrite(save_filename, signedImageRecover);
 
-		imshow("signedImage", signedImageRecover);
+		// imshow("signedImage", signedImageRecover);
 
 		Mat again = imread(save_filename);
 		// imshow("again", again);
@@ -102,9 +102,9 @@ public:
 		vector<Mat> channelsA;
 		split(again, channelsA);
 
-		imshow("again", channelsA[channel]);
+		// imshow("again", channelsA[channel]);
 
-		waitKey(0);
+		// waitKey(0);
 	}
 
 
@@ -123,7 +123,7 @@ private:
 		Mat show;
 
 		show = oriChannel;
-		cv::imshow("ori", show);
+		// cv::imshow("ori", show);
 #endif // SHOW
 
 
@@ -134,7 +134,7 @@ private:
 		
 #ifdef SHOW
 		show = show_mag(oriComplex);
-		imshow("dft", show);
+		// imshow("dft", show);
 #endif // SHOW
 
 
@@ -143,7 +143,7 @@ private:
 
 #ifdef SHOW
 		show = show_mag(signedComplex);
-		imshow("signed_dft", show);
+		// imshow("signed_dft", show);
 #endif // SHOW
 
 
@@ -154,7 +154,7 @@ private:
 
 #ifdef SHOW
 		show = show_mag(signed_idftF);
-		imshow("signed", show);
+		// imshow("signed", show);
 #endif // SHOW
 
 
@@ -169,7 +169,7 @@ private:
 
 		addWeighted(signedChannel, fixed_factor, h_matched, fixed_factor, 0, final_result);
 
-		waitKey(0);
+		// waitKey(0);
 
 		return final_result;
 	}
@@ -183,25 +183,34 @@ private:
 		Mat dct_out;
 		dct(orif, dct_out);
 
-		imshow("origin", orif);
-		imshow("dct", dct_out);
+		// imshow("origin", orif);
+		// imshow("dct", dct_out);
 
 		Mat signed_img;
 		signImageDct(dct_out, sign, signed_img);
 
-		imshow("signed", signed_img);
+		// imshow("signed", signed_img);
 
 		Mat signed_idct;
 		idct(signed_img, signed_idct);
 
-		imshow("signed_idct", signed_idct);
+		// imshow("signed_idct", signed_idct);
 
 		// waitKey(0);
 
 		Mat returned;
 		signed_idct.convertTo(returned, CV_8U, 255, 0);
 
+		Mat h_matched = histogram_Matching(returned, oriChannel);
+
+		Mat final_result;
+
+		addWeighted(returned, 1 - fixed_factor, h_matched, fixed_factor, 0, final_result);
+		
+		// waitKey(0);
+
 		return returned;
+
 	}
 
 	void signImageDct(Mat dctI, Mat signIm, Mat &out) {
@@ -214,7 +223,7 @@ private:
 		Mat signF = Mat::zeros(signI.size(), CV_32F);
 		signI.convertTo(signF, CV_32F);
 
-		// cv::pow(signF, power, signF);
+		cv::pow(signF, power, signF);
 
 		// mixed_factor = 0.0005;
 

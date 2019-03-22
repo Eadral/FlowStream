@@ -15,7 +15,8 @@ class Extract {
 public:
 
 	Extract(string extract_colorSpace, string extract_channel, 
-		float contrast = 1.f) : contrast(contrast) {
+		float contrast, bool debug) 
+		: contrast(contrast), debug(debug) {
 		if (extract_colorSpace == "RGB") {
 			if (extract_channel == "b") channel = 0;
 			if (extract_channel == "g") channel = 1;
@@ -72,16 +73,16 @@ public:
 		vector<Mat> channels;
 		split(img, channels);
 		Mat selected = channels[channel];
-		imshow("output", selected);
+		// imshow("output", selected);
 		selected.convertTo(selected, CV_32F, 1.0/255, 0);
 
 		Mat complex;
 		dct(selected, complex);
 		// shift(complex);
-		imshow("dct", complex);
-		waitKey(0);
+		if (debug) imshow("dct", complex);
+		// waitKey(0);
 		Mat extracted = complex;
-		imshow("QrRoi", extracted);
+		// imshow("QrRoi", extracted);
 
 		auto size = min(extracted.cols*INSERT_SCALE, extracted.rows*INSERT_SCALE);
 
@@ -90,12 +91,12 @@ public:
 		QrRoi.copyTo(extractedQR);
 
 		
-		// imshow("Qr", extractedQR);
+		if (debug) imshow("Qr", extractedQR);
 
 		Mat Qrout;
 		extractedQR.copyTo(Qrout);
 		Qrout.convertTo(Qrout, CV_8U, 255 * contrast, 0);
-		imshow("Qr", Qrout);
+		// imshow("Qr", Qrout);
 
 		// QREnhance(Qrout);
 		Mat binary;
@@ -105,10 +106,10 @@ public:
 		threshold(binary, binary, 200, 255, THRESH_BINARY | THRESH_TRIANGLE);
 		Mat output;
 		resize(binary, output, cv::Size(128, 128));
-		imshow("output", output);
+		if (debug) imshow("output", output);
 		imwrite(savename, output);
 
-		waitKey(0);
+		if (debug) waitKey(0);
 	}
 
 	void QREnhance(Mat &img) {
@@ -121,4 +122,5 @@ public:
 
 	float contrast;
 	int channel;
+	bool debug = false;
 };
